@@ -52,6 +52,18 @@ export const routes: Routes = [
         },
       },
       {
+        path: 'provider/:id',
+        title: `${titleApp} | Proveedor`,
+        loadComponent: () =>
+          import(
+            './presentation/pages/provider/provider.component'
+          ),
+        data: {
+          title: 'Proveedor',
+          description: 'Página de proveedor',
+        },
+      },
+      {
         path: '',
         redirectTo: 'home',
         pathMatch: 'full',
