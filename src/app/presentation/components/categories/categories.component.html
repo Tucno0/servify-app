@@ -1,0 +1,16 @@
+<!--* Categorias -->
+<section class="py-5 sm:py-8 lg:py-12">
+  <div class="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
+    <div class="grid grid-cols-2 text-center sm:grid-cols-4 gap-y-8 lg:grid-cols-8 sm:gap-12">
+      @for (category of categories; track $index) {
+        <div>
+          <div class="flex items-center justify-center w-20 h-20 mx-auto {{ category.background }} rounded-full">
+            <i class="text-3xl {{category.icon}}"></i>
+          </div>
+
+          <h3 class="mt-8 text-lg font-semibold text-black">{{ category.name }}</h3>
+        </div>
+      }
+    </div>
+  </div>
+</section>
