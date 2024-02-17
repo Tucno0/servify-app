@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
 
 import { CardReviewComponent } from '@company/components/cardReview/cardReview.component';
 import { reviews, categories, questions } from '@company/data';
@@ -12,6 +13,7 @@ import { CountUpComponent } from '@components/countUp/countUp.component';
   standalone: true,
   imports: [
     CommonModule,
+    RouterLink,
 
     CardReviewComponent,
     CountUpComponent,
