@@ -1,0 +1,205 @@
+<header>
+  <nav
+    class="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8"
+    aria-label="Global"
+  >
+    <div class="flex lg:flex-1">
+      <a
+        [routerLink]="[ user() ? '/dashboard': '/' ]"
+        class="-m-1.5 p-1.5"
+      >
+        <span class="sr-only">Your Company</span>
+        <img
+          class="h-8 w-auto"
+          src="/assets/images/logo-servify.png"
+          alt="Logo"
+        />
+      </a>
+    </div>
+
+    <!-- Mobile -->
+    <div class="flex lg:hidden">
+      <button
+        (click)="menuActive = !menuActive"
+        type="button"
+        class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
+      >
+        <span class="sr-only">Open main menu</span>
+        <svg
+          class="h-6 w-6"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          aria-hidden="true"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+          />
+        </svg>
+      </button>
+    </div>
+
+    <div class="hidden lg:flex lg:gap-x-12">
+      @if (!user()) {
+        <a
+          routerLink="/"
+          routerLinkActive="text-purple-600"
+          [routerLinkActiveOptions]="{ exact: true }"
+          class="text-base font-semibold leading-6 text-gray-900 hover:text-purple-600"
+        >
+          Inicio
+        </a>
+      }
+
+      <a
+        [routerLink]="[ user() ? '/dashboard': 'services' ]"
+        routerLinkActive="text-purple-600"
+        class="text-base font-semibold leading-6 text-gray-900 hover:text-purple-600"
+      >
+        Servicios
+      </a>
+
+      @if ( !user() ) {
+        <a
+          routerLink="about-us"
+          routerLinkActive="text-purple-600"
+          class="text-base font-semibold leading-6 text-gray-900 hover:text-purple-600"
+        >
+          Nosotros
+        </a>
+      }
+    </div>
+
+    <div class="hidden lg:flex lg:flex-1 lg:justify-end">
+      @if ( user() ) {
+        <img #avatar (click)="showAvatarDropdown = !showAvatarDropdown" id="avatarButton" type="button" class="w-10 h-10 rounded-full cursor-pointer" src="https://flowbite.com/docs/images/people/profile-picture-5.jpg" alt="User dropdown">
+
+        <!-- Dropdown menu -->
+        <div #dropdownMenu [ngClass]="showAvatarDropdown ? 'block' : 'hidden'" class="absolute z-50 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600 top-16">
+          <div class="px-4 py-3 text-sm text-gray-900 dark:text-white">
+            <div>{{ user()?.name }} {{ user()?.lastName }}</div>
+            <div class="font-medium truncate">{{ user()?.email }}</div>
+          </div>
+          <ul class="py-2 text-sm text-gray-700 dark:text-gray-200">
+            <li>
+              <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Dashboard</a>
+            </li>
+            <li>
+              <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Settings</a>
+            </li>
+            <li>
+              <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Earnings</a>
+            </li>
+          </ul>
+          <div class="py-1">
+            <button
+              type="button"
+              class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
+              (click)="logout()"
+            >
+              Cerra sesión
+            </button>
+          </div>
+        </div>
+
+      } @else {
+        <a
+          routerLink="auth/login"
+          class="text-sm font-semibold leading-6 text-gray-900 mr-3 bg-white p-2 rounded-md hover:text-white hover:bg-purple-600"
+        >
+          Iniciar Sesión <span aria-hidden="true">&rarr;</span>
+        </a>
+
+        <a
+          routerLink="auth/register"
+          class="text-sm font-semibold leading-6 text-white bg-gray-900 p-2 rounded-md hover:text-white hover:bg-purple-600"
+        >
+          Registrarse <span aria-hidden="true">&rarr;</span>
+        </a>
+      }
+    </div>
+  </nav>
+
+
+  <!-- Mobile menu, show/hide based on menu open state. -->
+  <div
+    class="lg:hidden {{ menuActive ? 'block' : 'hidden' }} relative z-40"
+    role="dialog"
+    aria-modal="true"
+  >
+    <!-- Background backdrop, show/hide based on slide-over state. -->
+    <div class="fixed inset-0 z-10"></div>
+    <div class="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
+      <div class="flex items-center justify-between">
+        <a href="#" class="-m-1.5 p-1.5">
+          <span class="sr-only">Your Company</span>
+          <img
+            class="h-8 w-auto"
+            src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
+            alt=""
+          />
+        </a>
+
+        <button
+          (click)="menuActive = !menuActive"
+          type="button"
+          class="-m-2.5 rounded-md p-2.5 text-gray-700 hover:bg-gray-300"
+        >
+          <span class="sr-only">Close menu</span>
+          <svg
+            class="h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            aria-hidden="true"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M6 18L18 6M6 6l12 12"
+            />
+          </svg>
+        </button>
+      </div>
+
+      <div class="mt-6 flow-root">
+        <div class="-my-6 divide-y divide-gray-500/10">
+          <div class="space-y-2 py-6">
+            @for (item of routes; track item.path) {
+              <a
+                [routerLink]="item.path"
+                routerLinkActive="text-purple-600 bg-gray-300"
+                class="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-300"
+                >{{ item.data!['title'] }}</a
+              >
+            }
+          </div>
+
+          <div class="py-6">
+            <div class="flex flex-1 justify-evenly">
+              <a
+                routerLink="auth/login"
+                class="text-sm font-semibold leading-6 text-gray-900 mr-3 bg-gray-200 p-2 rounded-md hover:text-white hover:bg-purple-600"
+              >
+                Iniciar Sesión <span aria-hidden="true">&rarr;</span>
+              </a>
+
+              <a
+                routerLink="auth/register"
+                routerLinkActive="text-purple-600"
+                class="text-sm font-semibold leading-6 text-white bg-gray-900 p-2 rounded-md hover:text-white hover:bg-purple-600"
+              >
+                Registrarse <span aria-hidden="true">&rarr;</span>
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</header>

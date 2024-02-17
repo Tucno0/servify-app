@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
-import { PresentationLayoutComponent } from './presentation/layouts/presentationLayout/presentationLayout.component';
-import { AuthComponent } from './auth/auth.component';
+import { isAuthenticatedGuard } from '@guards/isAuthenticated.guard';
+import { redirectGuard } from '@guards/redirect.guard';
 
 const titleApp = document.getElementsByTagName('title')[0].innerText;
 
@@ -13,61 +13,41 @@ const headerMenu = {
 export const routes: Routes = [
   {
     path: '',
-    component: PresentationLayoutComponent,
+    loadComponent: () => import('./domains/company/layouts/companyLayout/companyLayout.component'),
     children: [
       {
-        path: 'home',
+        path: '',
+        canActivate: [ redirectGuard ],
+        loadComponent: () => import('./domains/company/pages/home/home.component'),
         title: `${titleApp} | ${headerMenu.home}`,
-        loadComponent: () =>
-          import(
-            './presentation/pages/home/home.component'
-          ),
         data: {
           title: headerMenu.home,
           description: 'Landin page de la aplicación'
         },
       },
       {
-        path: 'about-us',
-        title: `${titleApp} | ${headerMenu.aboutUs}`,
-        loadComponent: () =>
-          import(
-            './presentation/pages/aboutUs/aboutUs.component'
-          ),
-        data: {
-          title: headerMenu.aboutUs,
-          description: 'Acerca de nosotros',
-        },
-      },
-      {
         path: 'services',
+        loadComponent: () => import('./domains/dashboard/pages/services/services.component'),
         title: `${titleApp} | ${headerMenu.services}`,
-        loadComponent: () =>
-          import(
-            './presentation/pages/services/services.component'
-          ),
         data: {
           title: headerMenu.services,
           description:  'Servicios que ofrecemos',
         },
       },
       {
-        path: 'provider/:id',
-        title: `${titleApp} | Proveedor`,
-        loadComponent: () =>
-          import(
-            './presentation/pages/provider/provider.component'
-          ),
+        path: 'about-us',
+        loadComponent: () => import('./domains/company/pages/aboutUs/aboutUs.component'),
+        title: `${titleApp} | ${headerMenu.aboutUs}`,
         data: {
-          title: 'Proveedor',
-          description: 'Página de proveedor',
+          title: headerMenu.aboutUs,
+          description: 'Acerca de nosotros',
         },
       },
-      {
-        path: '',
-        redirectTo: 'home',
-        pathMatch: 'full',
-      }
+      // {
+      //   path: '',
+      //   redirectTo: 'home',
+      //   pathMatch: 'full',
+      // }
       // {
       //   path: '**',
       //   redirectTo: '',
@@ -77,49 +57,80 @@ export const routes: Routes = [
   },
   {
     path: 'auth',
-    component: AuthComponent,
+    canActivate: [ redirectGuard ],
+    loadComponent: () => import('./domains/auth/layout/layout.component'),
     children: [
       {
         path: 'login',
-        loadComponent: () =>
-          import('./auth/pages/login/login.component'),
-        data: {
-          title: 'Iniciar sesión',
-          description: 'Iniciar sesión en la aplicación',
-        },
+        loadComponent: () => import('./domains/auth/pages/login/login.component'),
+        title: `${titleApp} | Iniciar sesión`,
       },
       {
         path: 'register',
-        loadComponent: () =>
-          import('./auth/pages/register/register.component'),
-        data: {
-          title: 'Registrarse',
-          description: 'Registrarse en la aplicación',
-        },
+        loadComponent: () => import('./domains/auth/pages/register/register.component'),
+        title: `${titleApp} | Registrarse`,
+      },
+      {
+        path: 'confirm-email',
+        loadComponent: () => import('./domains/auth/pages/confirmEmail/confirmEmail.component'),
+        title: `${titleApp} | Confirmar correo`,
       },
       {
         path: 'personal-information',
-        loadComponent: () =>
-          import('./auth/pages/personalInformation/personalInformation.component'),
-        data: {
-          title: 'Información personal',
-          description: 'Información personal del usuario',
-        },
+        loadComponent: () => import('./domains/auth/pages/personalInformation/personalInformation.component'),
+        title: `${titleApp} | Información personal`,
       },
       {
-        path: '',
-        redirectTo: 'login',
-        pathMatch: 'full',
+        path: 'forgot-password',
+        loadComponent: () => import('./domains/auth/pages/forgotPassword/forgotPassword.component'),
+        title: `${titleApp} | Recuperar contraseña`,
       },
       {
-        path: '**',
-        redirectTo: 'login',
-        pathMatch: 'full',
+        path: 'change-password',
+        loadComponent: () => import('./domains/auth/pages/changePassword/changePassword.component'),
+        title: `${titleApp} | Cambiar contraseña`,
       },
+      // {
+      //   path: '',
+      //   redirectTo: 'login',
+      //   pathMatch: 'full',
+      // },
+      // {
+      //   path: '**',
+      //   redirectTo: 'login',
+      //   pathMatch: 'full',
+      // },
     ],
   },
   {
+    path: 'dashboard',
+    canActivate: [ isAuthenticatedGuard ],
+    loadComponent: () => import('./domains/dashboard/layouts/dashboardLayout/dashboardLayout.component'),
+    children: [
+      {
+        path: '',
+        loadComponent: () => import('./domains/dashboard/pages/services/services.component'),
+        title: `${titleApp} | Servicios`,
+      },
+      {
+        path: 'provider/:id',
+        loadComponent: () => import('./domains/dashboard/pages/provider/provider.component'),
+        title: `${titleApp} | Especialista`,
+      },
+      {
+        path: '',
+        pathMatch: 'full',
+        redirectTo: 'services',
+      },
+    ]
+  },
+  {
+    path: '',
+    redirectTo: 'dashboard',
+    pathMatch: 'full',
+  },
+  {
     path: '**',
-    redirectTo: ''
+    redirectTo: 'dashboard',
   }
 ];

@@ -2,6 +2,54 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
+    "baseUrl": "./src",
+    "paths": {
+      "@account/*": [
+        "app/domains/account/*"
+      ],
+      "@auth/*": [
+        "app/domains/auth/*"
+      ],
+      "@company/*": [
+        "app/domains/company/*"
+      ],
+      "@dashboard/*": [
+        "app/domains/dashboard/*"
+      ],
+      "@payment/*": [
+        "app/domains/payment/*"
+      ],
+      "@components/*": [
+        "app/domains/shared/components/*"
+      ],
+      "@enums/*": [
+        "app/domains/shared/enums/*"
+      ],
+      "@guards/*": [
+        "app/domains/shared/guards/*"
+      ],
+      "@interfaces/*": [
+        "app/domains/shared/interfaces/*"
+      ],
+      "@models/*": [
+        "app/domains/shared/models/*"
+      ],
+      "@pipes/*": [
+        "app/domains/shared/pipes/*"
+      ],
+      "@services/*": [
+        "app/domains/shared/services/*"
+      ],
+      "@type/*": [
+        "app/domains/shared/types/*"
+      ],
+      "@utils/*": [
+        "app/domains/shared/utils/*"
+      ],
+      "@environments/*": [
+        "environments/*"
+      ],
+    },
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,
     "strict": true,

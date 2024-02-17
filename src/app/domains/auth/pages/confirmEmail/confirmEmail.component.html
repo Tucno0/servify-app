@@ -1,0 +1,54 @@
+<section class="py-10 sm:py-16 lg:py-24">
+  <div class="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
+    <app-header>
+      <h2 class="text-3xl text-center font-bold leading-tight text-black sm:text-4xl">
+        Confirmación de email
+      </h2>
+    </app-header>
+
+    <div class="relative max-w-md mx-auto mt-8 md:mt-16">
+      <div class="overflow-hidden bg-white rounded-md shadow-md">
+        <div class="px-4 py-6 sm:px-8 sm:py-7">
+
+          @switch (status()) {
+            @case ('success') {
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mx-auto text-green-500" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm-1.293-8.707l4-4a1 1 0 011.414 1.414l-5 5a1 1 0 01-1.414 0l-2-2a1 1 0 011.414-1.414l1.293 1.293z" clip-rule="evenodd" />
+              </svg>
+
+              <h3 class="mt-4 text-2xl font-medium text-center text-gray-900">
+                Confirmación de email exitosa
+              </h3>
+
+              <p class="mt-2 text-base text-center text-gray-500">
+                Te redirigiremos a la página de inicio de sesión para que puedas acceder a tu cuenta.
+              </p>
+            }
+
+            @case ('failed') {
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mx-auto" width="50" height="50" viewBox="0 0 50 50">
+                <line x1="10" y1="10" x2="40" y2="40" stroke="red" stroke-width="4"/>
+                <line x1="40" y1="10" x2="10" y2="40" stroke="red" stroke-width="4"/>
+              </svg>
+
+              <h3 class="mt-4 text-2xl font-medium text-center text-gray-900">
+                Confirmación de email fallida
+              </h3>
+
+              <p class="mt-2 text-base text-center text-gray-500">
+                No hemos podido confirmar tu email. Por favor, intenta nuevamente.
+              </p>
+            }
+
+            @default {
+              <svg xmlns="http://www.w3.org/2000/svg" class="animate-spin h-16 w-16 mx-auto text-blue-500" viewBox="0 0 24 24">
+                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+              </svg>
+            }
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
