@@ -90,7 +90,9 @@ export class AuthService {
         catchError( err => {
           console.log({ err });
           if (err.status === 401) {
+            // console.log('Paso por el 401');
             this.logout();
+            this.router.navigate(['']);
           }
           return of(false);
         })
@@ -100,7 +102,6 @@ export class AuthService {
   logout() {
     this._currentUser.set(null);
     this.tokenService.removeToken();
-    this.router.navigate(['']);
   }
 
   validateEmail(token: string): Observable<{ message: string }> {

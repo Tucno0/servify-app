@@ -2,7 +2,7 @@ export interface CardReview {
   stars: number;
   user: {
     name: string;
-    profession: string;
+    place: string;
     avatar: string;
     comment: string;
   };

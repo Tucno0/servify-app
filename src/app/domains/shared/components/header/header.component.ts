@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, ElementRef, HostListener, OnInit, ViewChild, computed, inject } from '@angular/core';
-import { Route, RouterModule } from '@angular/router';
+import { Route, Router, RouterModule } from '@angular/router';
 import { routes } from 'app/app.routes';
 import { AuthService } from '../../services/auth.service';
 
@@ -12,11 +12,11 @@ import { AuthService } from '../../services/auth.service';
     RouterModule,
   ],
   templateUrl: './header.component.html',
-  styleUrl: './header.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HeaderComponent {
   private readonly authService = inject(AuthService);
+  private readonly router = inject(Router);
 
   public user = computed(() => this.authService.currentUser());
 
@@ -37,5 +37,6 @@ export class HeaderComponent {
   // Methods
   logout() {
     this.authService.logout();
+    this.router.navigate(['']);
   }
 }

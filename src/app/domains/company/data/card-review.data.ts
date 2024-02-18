@@ -4,28 +4,28 @@ export const reviews: CardReview[] = [
   {
     stars: 5,
     user: {
-      name: 'Leslie Alexander',
-      profession: 'Freelance React Developer',
+      name: 'Hernán D.',
+      place: 'Callao, Lima',
       avatar: 'https://cdn.rareblocks.xyz/collection/clarity/images/testimonial/4/avatar-male-1.png',
-      comment: 'You made it so simple. My new site is so much faster and easier to work with than my old site.'
+      comment: 'Estoy conforme con el servicio brindado. Contraté empleada doméstica por hora y realizó la tarea con eficacia y honestidad. Tanto la parte de limpieza como de planchado de ropa quedó muy bien. La contraté para otro trabajo.'
     }
   },
   {
     stars: 5,
     user: {
-      name: 'Jacob Jones',
-      profession: 'Digital Marketer',
+      name: 'Karina R.',
+      place: 'San Isidro, Lima',
       avatar: 'https://cdn.rareblocks.xyz/collection/clarity/images/testimonial/4/avatar-male-2.png',
-      comment: 'Simply the best. Better than all the rest. I’d recommend this product to beginners and advanced users.'
+      comment: 'Excelente trabajo. Muy profesional y serio. Totalmente confiable. Quedé muy conforme, cobró barato, usó buenos materiales y fué limpio y ordenado. Además es plomero y electricista. Yo lo recomiendo.'
     }
   },
   {
     stars: 5,
     user: {
-      name: 'Jenny Wilson',
-      profession: 'Graphic Designer',
+      name: 'Susana M.',
+      place: 'Huamanga, Ayacucho',
       avatar: 'https://cdn.rareblocks.xyz/collection/clarity/images/testimonial/4/avatar-female.png',
-      comment: 'I cannot believe that I have got a brand new landing page after getting Omega. It was super easy to edit and publish.'
+      comment: 'Natalia fue muy rápida en la ejecución de las tareas, sumamente responsable, callada, detallista y cumplió con lo asignado de manera brillante. Gracias por todo! Utilizaré los servicios nuevamente.'
     }
   },
 ]
