@@ -1,13 +1,9 @@
 <header>
-  <nav
-    class="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8"
+  <nav class="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8"
     aria-label="Global"
   >
     <div class="flex lg:flex-1">
-      <a
-        [routerLink]="[ user() ? '/dashboard': '/' ]"
-        class="-m-1.5 p-1.5"
-      >
+      <a [routerLink]="[ user() ? '/dashboard': '/' ]" class="-m-1.5 p-1.5">
         <span class="sr-only">Your Company</span>
         <img
           class="h-8 w-auto"
@@ -44,66 +40,53 @@
 
     <div class="hidden lg:flex lg:gap-x-12">
       @if (!user()) {
-        <a
-          routerLink="/"
+        <a routerLink="/"
           routerLinkActive="text-purple-600"
           [routerLinkActiveOptions]="{ exact: true }"
           class="text-base font-semibold leading-6 text-gray-900 hover:text-purple-600"
-        >
-          Inicio
-        </a>
+        > Inicio </a>
       }
 
-      <a
-        [routerLink]="[ user() ? '/dashboard': 'services' ]"
+      <a [routerLink]="[ user() ? '/dashboard': 'services' ]"
         routerLinkActive="text-purple-600"
         class="text-base font-semibold leading-6 text-gray-900 hover:text-purple-600"
-      >
-        Servicios
-      </a>
+      > Servicios </a>
 
       @if ( !user() ) {
-        <a
-          routerLink="about-us"
+        <a routerLink="about-us"
           routerLinkActive="text-purple-600"
           class="text-base font-semibold leading-6 text-gray-900 hover:text-purple-600"
-        >
-          Nosotros
-        </a>
+        > Nosotros </a>
       }
     </div>
 
     <div class="hidden lg:flex lg:flex-1 lg:justify-end">
       @if ( user() ) {
-        <img #avatar (click)="showAvatarDropdown = !showAvatarDropdown" id="avatarButton" type="button" class="w-10 h-10 rounded-full cursor-pointer" src="https://flowbite.com/docs/images/people/profile-picture-5.jpg" alt="User dropdown">
+        <button
+          type="button"
+          class="flex rounded-full"
+          aria-expanded="false"
+          type="button"
+          (click)="overlayAvatarActive = !overlayAvatarActive"
+          cdkOverlayOrigin
+          #avatarOverlay="cdkOverlayOrigin"
+        >
+          <img
+            class="w-10 h-10 rounded-full"
+            src="https://flowbite.com/docs/images/people/profile-picture-5.jpg"
+            alt="user photo"
+          />
+        </button>
 
         <!-- Dropdown menu -->
-        <div #dropdownMenu [ngClass]="showAvatarDropdown ? 'block' : 'hidden'" class="absolute z-50 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600 top-16">
-          <div class="px-4 py-3 text-sm text-gray-900 dark:text-white">
-            <div>{{ user()?.name }} {{ user()?.lastName }}</div>
-            <div class="font-medium truncate">{{ user()?.email }}</div>
-          </div>
-          <ul class="py-2 text-sm text-gray-700 dark:text-gray-200">
-            <li>
-              <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Dashboard</a>
-            </li>
-            <li>
-              <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Settings</a>
-            </li>
-            <li>
-              <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Earnings</a>
-            </li>
-          </ul>
-          <div class="py-1">
-            <button
-              type="button"
-              class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
-              (click)="logout()"
-            >
-              Cerra sesión
-            </button>
-          </div>
-        </div>
+        <ng-template
+          cdkConnectedOverlay
+          [cdkConnectedOverlayOrigin]="avatarOverlay"
+          [cdkConnectedOverlayOpen]="overlayAvatarActive"
+          (overlayOutsideClick)="overlayAvatarActive = !overlayAvatarActive"
+        >
+          <app-account-overlay [user]="user" (closeOverlay)="handleCloseOverlay($event)"/>
+        </ng-template>
 
       } @else {
         <a
@@ -219,7 +202,7 @@
               </div>
             </div>
           } @else {
-            <img #avatar (click)="showAvatarDropdown = !showAvatarDropdown" id="avatarButton" type="button" class="w-10 h-10 rounded-full cursor-pointer" src="https://flowbite.com/docs/images/people/profile-picture-5.jpg" alt="User dropdown">
+            <img #avatar id="avatarButton" type="button" class="w-10 h-10 rounded-full cursor-pointer" src="https://flowbite.com/docs/images/people/profile-picture-5.jpg" alt="User dropdown">
 
           }
 

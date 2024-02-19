@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { CategoriesComponent } from '../../../shared/components/categories/categories.component';
+import { ChangeDetectionStrategy, Component, OnInit, signal } from '@angular/core';
 import { categories } from '../../../company/data/categories.data';
 import { initFlowbite } from 'flowbite';
+import { CategoryComponent } from '@components/category/category.component';
 
 @Component({
   selector: 'app-services',
@@ -10,7 +10,7 @@ import { initFlowbite } from 'flowbite';
   imports: [
     CommonModule,
 
-    CategoriesComponent,
+    CategoryComponent
   ],
   templateUrl: './services.component.html',
   styleUrl: './services.component.css',
@@ -19,6 +19,8 @@ import { initFlowbite } from 'flowbite';
 export default class ServicesComponent implements OnInit {
 
   public categories = categories;
+  public categoryActive = signal<string>('Ensamblaje');
+
   public isFilterOpen = false;
 
   ngOnInit(): void {

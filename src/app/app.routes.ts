@@ -57,7 +57,7 @@ export const routes: Routes = [
   },
   {
     path: 'auth',
-    canActivate: [ redirectGuard ],
+    // canActivate: [ redirectGuard ],
     loadComponent: () => import('./domains/auth/layout/layout.component'),
     children: [
       {

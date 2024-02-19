@@ -24,7 +24,7 @@ export const categories = [
     background: 'bg-red-100'
   },
   {
-    name: 'Aire libre',
+    name: 'Jardinería',
     icon: 'fa-solid fa-cloud-sun',
     description: 'lorem ipsum dolor sit amet consectetur adipiscing elit',
     background: 'bg-blue-100'
