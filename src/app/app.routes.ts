@@ -62,11 +62,13 @@ export const routes: Routes = [
     children: [
       {
         path: 'login',
+        canActivate: [ redirectGuard ],
         loadComponent: () => import('./domains/auth/pages/login/login.component'),
         title: `${titleApp} | Iniciar sesión`,
       },
       {
         path: 'register',
+        canActivate: [ redirectGuard ],
         loadComponent: () => import('./domains/auth/pages/register/register.component'),
         title: `${titleApp} | Registrarse`,
       },
@@ -77,24 +79,27 @@ export const routes: Routes = [
       },
       {
         path: 'personal-information',
+        canActivate: [ redirectGuard ],
         loadComponent: () => import('./domains/auth/pages/personalInformation/personalInformation.component'),
         title: `${titleApp} | Información personal`,
       },
       {
         path: 'forgot-password',
+        canActivate: [ redirectGuard ],
         loadComponent: () => import('./domains/auth/pages/forgotPassword/forgotPassword.component'),
         title: `${titleApp} | Recuperar contraseña`,
       },
       {
         path: 'change-password',
+        canActivate: [ redirectGuard ],
         loadComponent: () => import('./domains/auth/pages/changePassword/changePassword.component'),
         title: `${titleApp} | Cambiar contraseña`,
       },
-      // {
-      //   path: '',
-      //   redirectTo: 'login',
-      //   pathMatch: 'full',
-      // },
+      {
+        path: '',
+        redirectTo: 'login',
+        pathMatch: 'full',
+      },
       // {
       //   path: '**',
       //   redirectTo: 'login',

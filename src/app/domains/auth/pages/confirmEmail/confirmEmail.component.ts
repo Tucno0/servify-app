@@ -34,7 +34,7 @@ export default class ConfirmEmailComponent {
         this.validateEmail();
 
         setTimeout(() => {
-          window.close();
+          this.router.navigate(['/dashboard']);
         }, 4000);
 
       } else {
