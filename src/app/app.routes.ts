@@ -123,6 +123,11 @@ export const routes: Routes = [
         title: `${titleApp} | Especialista`,
       },
       {
+        path: 'service/:id',
+        loadComponent: () => import('./domains/dashboard/pages/service/service.component'),
+        title: `${titleApp} | Servicio`,
+      },
+      {
         path: '',
         pathMatch: 'full',
         redirectTo: 'services',
