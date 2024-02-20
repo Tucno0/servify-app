@@ -118,11 +118,11 @@
         >
           {{category.name}}
         </app-button>
+
       } @empty {
-        <div class="animate-pulse bg-gray-200 rounded-lg h-12 w-24"></div>
-        <div class="animate-pulse bg-gray-200 rounded-lg h-12 w-24"></div>
-        <div class="animate-pulse bg-gray-200 rounded-lg h-12 w-24"></div>
-        <div class="animate-pulse bg-gray-200 rounded-lg h-12 w-24"></div>
+        <div class="text-center text-gray-500">
+          No se encontraron categorías
+        </div>
       }
     </div>
 
@@ -130,7 +130,9 @@
 
   <!--* Servicios -->
   <section aria-labelledby="products-heading" class="pb-24 pt-6 mx-auto px-4 sm:px-6 lg:px-0 border-t-2">
-    <h2 class="mb-6 text-2xl font-bold text-gray-900">Servicios</h2>
+    <h2 class="mb-6 text-2xl font-bold text-gray-900">
+      Servicios - <span class="text-blue-600">{{ categoryActive() }}</span>
+    </h2>
 
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
       @for (service of services(); track service.id) {
@@ -139,7 +141,12 @@
         } @placeholder {
           <div class="animate-pulse bg-gray-200 rounded-lg h-96"></div>
         }
+
       }
     </div>
+
+    @if ( services().length === 0) {
+      <app-empty />
+    }
   </section>
 </main>

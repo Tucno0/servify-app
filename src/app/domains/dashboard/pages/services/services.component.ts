@@ -12,6 +12,7 @@ import { ButtonDuoToneColors } from '@components/button/button.properties';
 import { RouterLink } from '@angular/router';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { debounceTime, distinctUntilChanged } from 'rxjs';
+import { EmptyComponent } from '@components/empty/empty.component';
 
 @Component({
   selector: 'app-services',
@@ -24,9 +25,9 @@ import { debounceTime, distinctUntilChanged } from 'rxjs';
     CategoryComponent,
     ServiceCardComponent,
     ButtonComponent,
+    EmptyComponent,
   ],
   templateUrl: './services.component.html',
-  styleUrl: './services.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class ServicesComponent implements OnInit {
@@ -53,6 +54,7 @@ export default class ServicesComponent implements OnInit {
 
   ngOnInit(): void {
     initFlowbite();
+    this.filterByCategory(this.categoryActive());
 
     this.input.valueChanges
     .pipe(
@@ -92,7 +94,7 @@ export default class ServicesComponent implements OnInit {
   public find(query: string): void {
     this.services.set(
       this.originalServices().filter((service) => {
-        const word = ` ${service.name}-${service.category}`;
+        const word = `${service.name}-${service.category}-${service.description}`;
         return word.toLowerCase().includes(query);
       })
     );
