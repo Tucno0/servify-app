@@ -73,7 +73,7 @@
         >
           <img
             class="w-10 h-10 rounded-full"
-            src="https://flowbite.com/docs/images/people/profile-picture-5.jpg"
+            [src]="user()?.image"
             alt="user photo"
           />
         </button>
@@ -202,8 +202,14 @@
               </div>
             </div>
           } @else {
-            <img #avatar id="avatarButton" type="button" class="w-10 h-10 rounded-full cursor-pointer" src="https://flowbite.com/docs/images/people/profile-picture-5.jpg" alt="User dropdown">
-
+            <img
+              #avatar
+              id="avatarButton"
+              type="button"
+              class="w-10 h-10 rounded-full cursor-pointer"
+              [src]="user()?.image"
+              alt="User dropdown"
+            >
           }
 
         </div>

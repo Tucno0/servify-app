@@ -108,9 +108,9 @@
     <h2 class="text-2xl font-bold text-gray-900">Categorías</h2>
 
     <div class="my-4 flex flex-wrap gap-4">
-      @for (category of categories(); track category.name) {
+      @for (category of categories; track category.name) {
         <app-button
-          [outline]="category.outline!"
+          [outline]="true"
           [gradientDuoTone]="gradientColors()[gradient($index)]"
           routerLink="/dashboard"
           [queryParams]="{ categoryName: category.name }"

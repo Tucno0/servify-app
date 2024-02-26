@@ -22,7 +22,7 @@ export const appConfig: ApplicationConfig = {
       withViewTransitions({
         skipInitialTransition: true, // para que no se ejecute la animación en la primera carga
         onViewTransitionCreated(transitionInfo) { // para añadir una clase a la vista que se está cargando
-          console.log('onViewTransitionCreated', transitionInfo);
+          // console.log('onViewTransitionCreated', transitionInfo);
         },
       })
     ),

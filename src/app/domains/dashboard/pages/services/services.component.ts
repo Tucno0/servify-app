@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, Input, OnInit, computed, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnInit, computed, inject, signal } from '@angular/core';
 import { initFlowbite } from 'flowbite';
 import { CategoryComponent } from '@components/category/category.component';
 import { ServiceCardComponent } from '../../components/serviceCard/serviceCard.component';
@@ -7,12 +7,12 @@ import { services } from '@dashboard/data/services.data';
 import { Service } from '@dashboard/interfaces/service.interface';
 import { ButtonComponent } from '@components/button/button.component';
 import { Category } from '@dashboard/interfaces/category.interface';
-import { categories } from '@dashboard/data/categories.data';
 import { ButtonDuoToneColors } from '@components/button/button.properties';
 import { RouterLink } from '@angular/router';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { debounceTime, distinctUntilChanged } from 'rxjs';
 import { EmptyComponent } from '@components/empty/empty.component';
+import { CategoriesService } from '../../../shared/services/categories.service';
 
 @Component({
   selector: 'app-services',
@@ -44,10 +44,14 @@ export default class ServicesComponent implements OnInit {
 
   @Input() categoryName?: string;
 
-  public categories = signal<Category[]>(categories);
+  // Services
+  private readonly categoriesService = inject(CategoriesService);
+
+  public categories: Category[] = [];
+  public categoryActive = signal<string>('Tareas destacadas');
+
   public originalServices = signal<Service[]>(services);
   public services = signal<Service[]>(services);
-  public categoryActive = signal<string>('Tareas destacadas');
 
   public input = new FormControl('', {nonNullable: true});
 
@@ -55,6 +59,9 @@ export default class ServicesComponent implements OnInit {
   ngOnInit(): void {
     initFlowbite();
     this.filterByCategory(this.categoryActive());
+
+    // Categories
+    this.getCategories();
 
     this.input.valueChanges
     .pipe(
@@ -98,6 +105,18 @@ export default class ServicesComponent implements OnInit {
         return word.toLowerCase().includes(query);
       })
     );
+  }
+
+  public getCategories(): void {
+    this.categoriesService.getCategories()
+      .subscribe({
+        next: (categories) => {
+          this.categories = categories;
+        },
+        error: (error) => {
+          console.error(error);
+        }
+      });
   }
 
 }
