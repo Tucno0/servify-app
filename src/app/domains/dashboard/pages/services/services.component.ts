@@ -1,18 +1,19 @@
-import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, Input, OnInit, computed, inject, signal } from '@angular/core';
 import { initFlowbite } from 'flowbite';
-import { CategoryComponent } from '@components/category/category.component';
-import { ServiceCardComponent } from '../../components/serviceCard/serviceCard.component';
-import { services } from '@dashboard/data/services.data';
-import { Service } from '@dashboard/interfaces/service.interface';
-import { ButtonComponent } from '@components/button/button.component';
-import { Category } from '@dashboard/interfaces/category.interface';
-import { ButtonDuoToneColors } from '@components/button/button.properties';
+import { catchError, debounceTime, distinctUntilChanged } from 'rxjs';
+
+import { CommonModule } from '@angular/common';
+import { ChangeDetectionStrategy, Component, Input, OnInit, inject, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
-import { debounceTime, distinctUntilChanged } from 'rxjs';
+
+import { CategoryComponent } from '@components/category/category.component';
 import { EmptyComponent } from '@components/empty/empty.component';
-import { CategoriesService } from '../../../shared/services/categories.service';
+import { ButtonComponent } from '@components/button/button.component';
+import { ButtonDuoToneColors } from '@components/button/button.properties';
+import { CategoriesService, ServicesService } from '@services/index';
+
+import { ServiceCardComponent } from '../../components/serviceCard/serviceCard.component';
+import { Category, Service } from '@models/index';
 
 @Component({
   selector: 'app-services',
@@ -46,23 +47,28 @@ export default class ServicesComponent implements OnInit {
 
   // Services
   private readonly categoriesService = inject(CategoriesService);
+  private readonly servicesService = inject(ServicesService);
 
-  public categories: Category[] = [];
+  // Signals
+  public categories = signal<Category[]>([]);
   public categoryActive = signal<string>('Tareas destacadas');
 
-  public originalServices = signal<Service[]>(services);
-  public services = signal<Service[]>(services);
+  public services = signal<Service[]>([]);
+  public originalServices = signal<Service[]>([]);
 
+  // Form
   public input = new FormControl('', {nonNullable: true});
 
 
+  // Component methods
   ngOnInit(): void {
     initFlowbite();
-    this.filterByCategory(this.categoryActive());
 
-    // Categories
-    this.getCategories();
+    // Services
+    this.getAllCategories();
+    this.getAllServices();
 
+    // Search
     this.input.valueChanges
     .pipe(
       debounceTime(500),
@@ -78,9 +84,10 @@ export default class ServicesComponent implements OnInit {
 
   ngOnChanges(): void {
     this.categoryActive.set(this.categoryName ?? 'Tareas destacadas');
-    // console.log(this.categoryActive());
+    // console.log('categoryActive => ', this.categoryActive());
   }
 
+  // Methods
   public gradient = (position: number) => {
     if (position <= 5) {
       return position + 1;
@@ -91,7 +98,7 @@ export default class ServicesComponent implements OnInit {
     }
   }
 
-  filterByCategory(category: string) {
+  public filterByCategory(category: string) {
     this.categoryActive.set(category);
     this.services.set(
       this.originalServices().filter((service) => service.category.name === category)
@@ -107,16 +114,34 @@ export default class ServicesComponent implements OnInit {
     );
   }
 
-  public getCategories(): void {
+  public getAllCategories() {
     this.categoriesService.getCategories()
-      .subscribe({
-        next: (categories) => {
-          this.categories = categories;
-        },
-        error: (error) => {
-          console.error(error);
-        }
-      });
+    .pipe(
+      catchError((error) => {
+        console.error(error);
+        return [];
+      })
+    )
+    .subscribe((categories) => {
+      this.categories.set(categories);
+    });
+  }
+
+  public getAllServices() {
+    this.servicesService.getServices()
+    .pipe(
+      catchError((error) => {
+        console.error(error);
+        return [];
+      })
+    )
+    .subscribe((services) => {
+      this.services.set(services);
+      this.originalServices.set(services);
+
+      // Filter by category
+      this.filterByCategory(this.categoryActive());
+    });
   }
 
 }

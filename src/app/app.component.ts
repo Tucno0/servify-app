@@ -3,6 +3,7 @@ import { RouterOutlet, Router } from '@angular/router';
 import { initFlowbite } from 'flowbite';
 import { AuthService } from './domains/shared/services/auth.service';
 import { AuthStatus } from '@enums/auth-status.enum';
+import { PlatformLocation } from '@angular/common';
 
 @Component({
   selector: 'app-root',
@@ -16,6 +17,14 @@ import { AuthStatus } from '@enums/auth-status.enum';
 export class AppComponent implements OnInit{
   private readonly authService = inject(AuthService);
   private readonly router = inject(Router);
+  private readonly platformLocation = inject(PlatformLocation);
+
+  constructor() {
+    // Desactivar la restauración del desplazamiento
+    this.platformLocation.onPopState(() => {
+      window.scrollTo(0, 0);
+    });
+  }
 
   ngOnInit(): void {
     this.authService.checkAuthStatus().subscribe();

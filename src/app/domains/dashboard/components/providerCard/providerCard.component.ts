@@ -1,18 +1,18 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { Service } from '@models/index';
+import { Provider } from '@models/provider.model';
 
 @Component({
-  selector: 'app-service-card',
+  selector: 'app-provider-card',
   standalone: true,
   imports: [
     CommonModule,
     RouterLink,
   ],
-  templateUrl: './serviceCard.component.html',
+  templateUrl: './providerCard.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ServiceCardComponent {
-  @Input({ required: true }) public service!: Service;
+export class ProviderCardComponent {
+  @Input({ required: true }) provider!: Provider;
 }

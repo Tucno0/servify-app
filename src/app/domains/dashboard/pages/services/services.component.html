@@ -108,11 +108,11 @@
     <h2 class="text-2xl font-bold text-gray-900">Categorías</h2>
 
     <div class="my-4 flex flex-wrap gap-4">
-      @for (category of categories; track category.name) {
+      @for (category of categories(); track category.name) {
         <app-button
           [outline]="true"
           [gradientDuoTone]="gradientColors()[gradient($index)]"
-          routerLink="/dashboard"
+          routerLink="/services"
           [queryParams]="{ categoryName: category.name }"
           (click)="filterByCategory(category.name)"
         >
@@ -137,15 +137,15 @@
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
       @for (service of services(); track service.id) {
         @defer ( on viewport ) {
-          <app-service-card [service]="service" />
+          <app-service-card [service]="service"/>
+
         } @placeholder {
           <div class="animate-pulse bg-gray-200 rounded-lg h-96"></div>
         }
-
       }
     </div>
 
-    @if ( services().length === 0) {
+    @if ( !services() ) {
       <app-empty />
     }
   </section>

@@ -35,6 +35,21 @@ export const routes: Routes = [
         },
       },
       {
+        path: 'provider/:id',
+        loadComponent: () => import('./domains/dashboard/pages/provider/provider.component'),
+        title: `${titleApp} | Especialista`,
+      },
+      {
+        path: 'service/:id',
+        loadComponent: () => import('./domains/dashboard/pages/service/service.component'),
+        title: `${titleApp} | Servicio`,
+      },
+      {
+        path: '',
+        pathMatch: 'full',
+        redirectTo: 'services',
+      },
+      {
         path: 'about-us',
         loadComponent: () => import('./domains/company/pages/aboutUs/aboutUs.component'),
         title: `${titleApp} | ${headerMenu.aboutUs}`,
@@ -117,21 +132,7 @@ export const routes: Routes = [
         loadComponent: () => import('./domains/dashboard/pages/services/services.component'),
         title: `${titleApp} | Servicios`,
       },
-      {
-        path: 'provider/:id',
-        loadComponent: () => import('./domains/dashboard/pages/provider/provider.component'),
-        title: `${titleApp} | Especialista`,
-      },
-      {
-        path: 'service/:id',
-        loadComponent: () => import('./domains/dashboard/pages/service/service.component'),
-        title: `${titleApp} | Servicio`,
-      },
-      {
-        path: '',
-        pathMatch: 'full',
-        redirectTo: 'services',
-      },
+
     ]
   },
   {

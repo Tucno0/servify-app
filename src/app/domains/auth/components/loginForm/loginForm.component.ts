@@ -29,7 +29,7 @@ export class LoginFormComponent {
 
   // form
   public form = this.formBuilder.group({
-    email: ['mivayi5952@oprevolt.com', [ Validators.email, Validators.required]],
+    email: ['anasanchez@gmail.com', [ Validators.email, Validators.required]],
     password: ['123456', [ Validators.required, Validators.minLength(6)]],
   });
 

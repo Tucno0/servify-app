@@ -7,5 +7,6 @@ export interface Service {
   content:     string;
   priceByHour: string;
   category:    Category;
+  images:      string[];
 }
 

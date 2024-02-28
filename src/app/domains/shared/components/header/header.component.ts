@@ -41,4 +41,5 @@ export class HeaderComponent {
   handleCloseOverlay(event: boolean) {
     this.overlayAvatarActive = event;
   }
+
 }

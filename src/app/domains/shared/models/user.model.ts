@@ -10,5 +10,5 @@ export interface User {
   role:           Role;
   createdAt:      string;
   updatedAt:      string;
-image?:           string;
+  image?:           string;
 }
