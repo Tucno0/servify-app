@@ -1,51 +1,100 @@
-<section class="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8 ">
-  <div class="flex flex-col md:flex-row gap-6 ">
-    <div class="w-full md:w-[30%] bg-slate-400 flex flex-col gap-8">
-      <!-- Content for the first column -->
-      <div class="flex flex-col gap-4">
-        <div class="flex justify-center pt-3">
-            <img class="object-cover h-[200px] md:h-40 w-[200px] md:w-40 rounded-full" src="https://www.taskrabbit.com/v3/assets/_/_/_/src/becomeATaskerNew/images/hero_landing-fdeb7ef8f1a4361ec76f75d007d79546.jpg" alt="">
-        </div>
-
-        <div class="flex items-center flex-col gap-2">
-          <p class="text-xl font-bold">Nombre del proveedor</p>
-
-          <div class="flex items-center">
-            @for (star of [].constructor(5); track $index) {
-              <svg
-              class="w-5 h-5 text-[#FDB241]"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 20 20"
-              fill="currentColor"
+<div class="bg-white">
+  <section class="px-4 mx-auto max-w-7xl lg:py-5">
+    <div class="flex flex-col md:flex-row gap-6 md:gap-12 lg:gap-24 xl:gap-32">
+      <div class="w-full md:w-[30%] flex flex-col gap-8">
+        <!-- Content for the first column -->
+        <div class="flex flex-col gap-4">
+          <div class="flex justify-center pt-3">
+              <img
+                class="object-cover h-[200px] md:h-40 w-[200px] md:w-40 rounded-full"
+                [src]="provider()?.user?.image"
+                [alt]="provider()?.user?.name"
               >
-                <path
-                  d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
-                />
-              </svg>
-            }
+          </div>
+
+          <div class="flex items-center flex-col gap-2">
+            <p class="text-xl font-bold">{{ completeName() }}</p>
+
+            <div class="flex items-center">
+              @for (star of [].constructor( rating() ); track $index) {
+                <svg
+                class="w-5 h-5 text-[#FDB241]"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+                >
+                  <path
+                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                  />
+                </svg>
+              }
+            </div>
+          </div>
+
+          <p>{{provider()?.description}}</p>
+
+          <!-- boton de ver disponibilidad -->
+          <div class="flex justify-center">
+            <button
+              class="flex items-center justify-center w-full px-4 py-2 text-white bg-indigo-500 rounded-md hover:bg-indigo-600"
+            >
+              <i class="fas fa-calendar-alt"></i>
+              <span class="ml-2">Ver disponibilidad</span>
+            </button>
           </div>
         </div>
 
-        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eius ex voluptas amet nulla eos voluptatum provident molestiae alias libero in qui, vitae veniam, error dolor! Dignissimos ea consequatur libero delectus.</p>
+        <div class="">
+          <h3 class="text-xl font-bold">Calificaciones</h3>
+
+          <!-- Tarjeta de reviews -->
+          <div class="flex flex-col gap-4 my-4">
+            <app-review-card />
+            <app-review-card />
+            <app-review-card />
+          </div>
+        </div>
       </div>
 
-      <div class="">
-        <h3>Calificaciones</h3>
-        Adipisci omnis recusandae cum accusamus dicta distinctio itaque ex consequuntur ducimus? Doloremque aspernatur nostrum tempore omnis architecto obcaecati corporis error minima! Impedit fuga dignissimos quibusdam facere cum hic alias pariatur.
-      Odio non dolorem enim, veritatis minima tempore, inventore magni totam tempora culpa id temporibus quisquam eos autem cupiditate aliquam. Velit deserunt id numquam ea corporis eius repellendus ad laudantium officia!
-      Ratione voluptatem culpa unde veniam officiis, nisi impedit optio, officia quos sint corrupti, cum iure! Rerum ea cum ut illo alias omnis ipsam ducimus perspiciatis deserunt dolorem, veniam quae. Ratione!
+      <div class="w-full md:w-[70%]">
+        <div class="flex flex-col text-gray-600 body-font">
+          <!-- Servicios que ofrece -->
+          <div class="container pt-3 mx-auto flex flex-wrap">
+            <h3 class="text-xl font-bold mb-10 text-black">Servicios que ofrece</h3>
+
+            <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              @for (service of [].constructor( 6 ); track $index;) {
+                <!-- Una tarjeta de servicio con html y tailwind-->
+                <div class="flex flex-col items-center justify-center p-4 bg-white rounded-lg shadow-md">
+                  <img
+                    class="object-cover"
+                    src="https://res.cloudinary.com/taskrabbit-com/image/upload/q_auto,f_auto/c_fill,h_480,w_640/v1553040641/qsctdbs3smwibuvk93n6.jpg"
+                    alt="service"
+                  >
+
+                  <h3 class="text-lg font-bold">Diseño de Logos</h3>
+                  <p class="text-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                </div>
+              }
+            </div>
+
+          </div>
+
+          <!-- Divider -->
+          <div class="h-[2px] bg-gray-200 my-10"></div>
+
+          <!-- Trabjajos previos -->
+          <div class="container pt-3 mx-auto flex flex-wrap">
+            <h3 class="text-xl font-bold mb-10 text-black">Trabajos Recientes</h3>
+
+            @for (experience of [].constructor( 4 ); track $index;) {
+              <app-experience-item [index]="$index + 1"/>
+            }
+          </div>
+
+        </div>
+
       </div>
     </div>
-
-    <div class="w-full md:w-[70%] bg-red-600">
-      Adipisci omnis recusandae cum accusamus dicta distinctio itaque ex consequuntur ducimus? Doloremque aspernatur nostrum tempore omnis architecto obcaecati corporis error minima! Impedit fuga dignissimos quibusdam facere cum hic alias pariatur.
-      Odio non dolorem enim, veritatis minima tempore, inventore magni totam tempora culpa id temporibus quisquam eos autem cupiditate aliquam. Velit deserunt id numquam ea corporis eius repellendus ad laudantium officia!
-      Ratione voluptatem culpa unde veniam officiis, nisi impedit optio, officia quos sint corrupti, cum iure! Rerum ea cum ut illo alias omnis ipsam ducimus perspiciatis deserunt dolorem, veniam quae. Ratione!
-      Quaerat cum, autem voluptatem, assumenda aspernatur dolorem fuga quasi illo neque voluptatibus sunt odit at repudiandae earum quis suscipit molestias eum natus incidunt? Labore nesciunt doloremque quasi, eius ipsam alias.
-      Nulla, deserunt natus earum ducimus facilis, eaque necessitatibus suscipit fuga minima exercitationem quidem at aperiam quis neque impedit optio nihil repellendus corporis? Consectetur eos modi vitae possimus nam quaerat harum!
-      Culpa sint dicta laudantium aut iste, corrupti, ab accusamus soluta inventore, unde vel molestias enim dolores exercitationem. Soluta dignissimos illo aliquid id rerum? Veritatis omnis quidem labore fugit, facilis eligendi?
-      Porro magnam asperiores adipisci dolorem dolores? Saepe at itaque minima similique hic placeat natus reprehenderit repellendus recusandae veritatis quia aliquid ipsum accusamus in magnam ratione officiis, iure commodi fuga amet.
-      <!-- Content for the second column -->
-    </div>
-  </div>
-</section>
+  </section>
+</div>

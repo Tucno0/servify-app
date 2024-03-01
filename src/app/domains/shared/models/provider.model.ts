@@ -7,6 +7,6 @@ export interface Provider {
   user:        User;
   phone:       string;
   description: string;
-  raiting:     string;
-  content?:     string;
+  rating:      number;
+  content?:    string;
 }

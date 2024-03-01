@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { environment } from '@environments/environment';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import { Provider } from '@models/index';
 
 @Injectable({
@@ -20,7 +20,13 @@ export class ProvidersService {
 
   getProvider(id: string): Observable<Provider> {
     const url = `${this.apiUrl}/api/providers/${id}`;
-    return this.http.get<Provider>(url);
+    return this.http.get<Provider>(url)
+      .pipe(
+        map(provider => {
+          provider.rating = Number(provider.rating)
+          return provider;
+        })
+      );
   }
 
   getProvidersByServiceId(serviceId: string): Observable<Provider[]> {
