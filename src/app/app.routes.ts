@@ -45,11 +45,6 @@ export const routes: Routes = [
         title: `${titleApp} | Servicio`,
       },
       {
-        path: '',
-        pathMatch: 'full',
-        redirectTo: 'services',
-      },
-      {
         path: 'about-us',
         loadComponent: () => import('./domains/company/pages/aboutUs/aboutUs.component'),
         title: `${titleApp} | ${headerMenu.aboutUs}`,
@@ -57,6 +52,11 @@ export const routes: Routes = [
           title: headerMenu.aboutUs,
           description: 'Acerca de nosotros',
         },
+      },
+      {
+        path: '',
+        pathMatch: 'full',
+        redirectTo: 'services',
       },
       // {
       //   path: '',
@@ -132,7 +132,22 @@ export const routes: Routes = [
         loadComponent: () => import('./domains/dashboard/pages/services/services.component'),
         title: `${titleApp} | Servicios`,
       },
-
+      {
+        path: 'book',
+        canActivate: [ isAuthenticatedGuard ],
+        loadComponent: () => import('./domains/payment/pages/book/book.component'),
+        title: `${titleApp} | Reservar Servicio`,
+      },
+      {
+        path: 'confirm-order',
+        loadComponent: () => import('./domains/payment/pages/confirmOrder/confirmOrder.component'),
+        title: `${titleApp} | Confirmar Orden`,
+      },
+      {
+        path: 'orders',
+        loadComponent: () => import('./domains/dashboard/pages/orders/orders.component'),
+        title: `${titleApp} | Mis órdenes`,
+      }
     ]
   },
   {

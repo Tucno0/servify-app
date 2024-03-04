@@ -13,5 +13,6 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 })
 export class LoaderComponent {
   @Input() size: number = 24;
+  @Input() color: string = 'white';
 
 }

@@ -66,7 +66,8 @@ export default class ServiceComponent {
 
   openModal() {
     if(this.user()) {
-      // this.router.navigate(['/dashboard', 'service', 'create', this.id]);
+      // navegando a la página de reserva, agregar como query el id del servicio
+      this.router.navigate(['/dashboard/book'], { queryParams: { serviceId: this.service()!.id } });
       return;
     }
 

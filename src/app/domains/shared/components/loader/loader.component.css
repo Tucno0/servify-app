@@ -8,7 +8,7 @@
 .loader div {
   width: 8%;
   height: 24%;
-  background: rgb(231, 230, 230);
+  /* background: rgb(231, 230, 230); */
   position: absolute;
   left: 50%;
   top: 30%;

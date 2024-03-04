@@ -1,0 +1,450 @@
+<section class="py-10 bg-white">
+  <div class="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
+    <h1>
+      <span class="block text-3xl font-bold text-gray-900 dark:text-white">
+        Pagina de Pago
+      </span>
+      <span
+        class="block text-sm font-medium text-gray-500 dark:text-muted-foreground"
+      >
+        Complete su informacion de pago
+      </span>
+    </h1>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 py-8 gap-6">
+      <form
+        [formGroup]="form"
+        class="flex flex-col gap-12 lg:col-span-2 rounded-lg p-8 bg-[#F4F7FF] border border-gray-200"
+      >
+
+        <div class="">
+          <h2 class="text-2xl font-semibold mb-6">Informacion Personal</h2>
+
+          <div class="">
+            <div class="grid grid-cols-2 gap-4">
+              <div>
+                <label
+                  for="name"
+                  class="block text-gray-500 font-medium dark:text-white mb-1"
+                  >Nombre</label
+                >
+                <input
+                  type="text"
+                  id="name"
+                  placeholder="Ingresa tu nombre"
+                  formControlName="name"
+                  class="w-full rounded-lg border border-gray-200 py-2 px-3"
+                />
+              </div>
+              <div>
+                <label
+                  for="last_name"
+                  class="block text-gray-500 font-medium dark:text-white mb-1"
+                  >Apellidos</label
+                >
+                <input
+                  type="text"
+                  id="last_name"
+                  placeholder="Ingresa tu apellido"
+                  formControlName="last_name"
+                  class="w-full rounded-lg border border-gray-200 py-2 px-3"
+                />
+              </div>
+            </div>
+
+            <div class="mt-4">
+              <label
+                for="address"
+                class="block text-gray-500 font-medium dark:text-white mb-1"
+                >Dirección</label
+              >
+              <input
+                type="text"
+                id="address"
+                placeholder="Ingresa tu dirección"
+                formControlName="address"
+                class="w-full rounded-lg border border-gray-200 py-2 px-3"
+              />
+            </div>
+
+            <div class="grid grid-cols-2 gap-4 mt-4">
+              <div>
+                <label
+                  for="city"
+                  class="block text-gray-500 font-medium dark:text-white mb-1"
+                  >Ciudad</label
+                >
+                <input
+                  type="text"
+                  id="city"
+                  placeholder="Ingresa tu ciudad"
+                  formControlName="city"
+                  class="w-full rounded-lg border border-gray-200 py-2 px-3"
+                />
+              </div>
+              <div>
+                <label
+                  for="zip"
+                  class="block text-gray-500 font-medium dark:text-white mb-1"
+                  >Codigo Postal</label
+                >
+                <input
+                  type="text"
+                  id="zip"
+                  placeholder="Ingresa tu codigo postal, ej: 10001"
+                  formControlName="zip_code"
+                  class="w-full rounded-lg border border-gray-200 py-2 px-3"
+                />
+              </div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-4 mt-4">
+              <div>
+                <label
+                  for="phone"
+                  class="block text-gray-500 font-medium dark:text-white mb-1"
+                  >Celular</label
+                >
+                <input
+                  type="tel"
+                  id="phone"
+                  placeholder="Ingresa tu celular, ej: +51 999 999 999"
+                  formControlName="phone"
+                  class="w-full rounded-lg border border-gray-200 py-2 px-3"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Divider -->
+        <div class="flex">
+          <div class="flex-1 h-[1px] bg-gray-200"></div>
+        </div>
+
+        <div class="">
+          <h2 class="text-2xl font-semibold mb-6">Selecciona la fecha de servicio</h2>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div
+              class="border text-card-foreground p-4 bg-white rounded-lg shadow"
+              data-v0-t="card"
+            >
+              <h4 class="text-sm font-semibold mb-2">Shipping Address</h4>
+              <p class="text-sm">Same as Personal</p>
+              <p class="text-sm font-semibold">New York, USA</p>
+              <p class="text-sm">2707 Davis Avenue</p>
+            </div>
+            <div
+              class="border text-card-foreground p-4 bg-white rounded-lg shadow"
+              data-v0-t="card"
+            >
+              <h4 class="text-sm font-semibold mb-2">Register Now</h4>
+              <p class="text-sm">
+                Create an account now to have multiple address.
+              </p>
+            </div>
+            <div
+              class="border text-card-foreground p-4 bg-white rounded-lg shadow flex items-center"
+              data-v0-t="card"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="h-6 w-6 text-gray-600"
+              >
+                <path
+                  d="M5 18H3c-.6 0-1-.4-1-1V7c0-.6.4-1 1-1h10c.6 0 1 .4 1 1v11"
+                ></path>
+                <path d="M14 9h4l4 4v4c0 .6-.4 1-1 1h-2"></path>
+                <circle cx="7" cy="18" r="2"></circle>
+                <path d="M15 18H9"></path>
+                <circle cx="17" cy="18" r="2"></circle>
+              </svg>
+              <div class="ml-4">
+                <h4 class="text-sm font-semibold">FedEx Fast Delivery</h4>
+                <p class="text-sm">Delivery: Friday, 25</p>
+                <p class="text-sm font-semibold">$10.99</p>
+              </div>
+            </div>
+            <div
+              class="border text-card-foreground p-4 bg-white rounded-lg shadow flex items-center"
+              data-v0-t="card"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="h-6 w-6 text-gray-600"
+              >
+                <path
+                  d="M5 18H3c-.6 0-1-.4-1-1V7c0-.6.4-1 1-1h10c.6 0 1 .4 1 1v11"
+                ></path>
+                <path d="M14 9h4l4 4v4c0 .6-.4 1-1 1h-2"></path>
+                <circle cx="7" cy="18" r="2"></circle>
+                <path d="M15 18H9"></path>
+                <circle cx="17" cy="18" r="2"></circle>
+              </svg>
+              <div class="ml-4">
+                <h4 class="text-sm font-semibold">DHL Fast Delivery</h4>
+                <p class="text-sm">Delivery: Sunday, 27</p>
+                <p class="text-sm font-semibold">$10.99</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Divider -->
+        <div class="flex">
+          <div class="flex-1 h-[1px] bg-gray-200"></div>
+        </div>
+
+        <div class="">
+          <h2 class="text-2xl font-semibold mb-6">Selecciona la direccion exacta</h2>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div
+              class="border text-card-foreground p-4 bg-white rounded-lg shadow"
+              data-v0-t="card"
+            >
+              <h4 class="text-sm font-semibold mb-2">Shipping Address</h4>
+              <p class="text-sm">Same as Personal</p>
+              <p class="text-sm font-semibold">New York, USA</p>
+              <p class="text-sm">2707 Davis Avenue</p>
+            </div>
+            <div
+              class="border text-card-foreground p-4 bg-white rounded-lg shadow"
+              data-v0-t="card"
+            >
+              <h4 class="text-sm font-semibold mb-2">Register Now</h4>
+              <p class="text-sm">
+                Create an account now to have multiple address.
+              </p>
+            </div>
+            <div
+              class="border text-card-foreground p-4 bg-white rounded-lg shadow flex items-center"
+              data-v0-t="card"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="h-6 w-6 text-gray-600"
+              >
+                <path
+                  d="M5 18H3c-.6 0-1-.4-1-1V7c0-.6.4-1 1-1h10c.6 0 1 .4 1 1v11"
+                ></path>
+                <path d="M14 9h4l4 4v4c0 .6-.4 1-1 1h-2"></path>
+                <circle cx="7" cy="18" r="2"></circle>
+                <path d="M15 18H9"></path>
+                <circle cx="17" cy="18" r="2"></circle>
+              </svg>
+              <div class="ml-4">
+                <h4 class="text-sm font-semibold">FedEx Fast Delivery</h4>
+                <p class="text-sm">Delivery: Friday, 25</p>
+                <p class="text-sm font-semibold">$10.99</p>
+              </div>
+            </div>
+            <div
+              class="border text-card-foreground p-4 bg-white rounded-lg shadow flex items-center"
+              data-v0-t="card"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="h-6 w-6 text-gray-600"
+              >
+                <path
+                  d="M5 18H3c-.6 0-1-.4-1-1V7c0-.6.4-1 1-1h10c.6 0 1 .4 1 1v11"
+                ></path>
+                <path d="M14 9h4l4 4v4c0 .6-.4 1-1 1h-2"></path>
+                <circle cx="7" cy="18" r="2"></circle>
+                <path d="M15 18H9"></path>
+                <circle cx="17" cy="18" r="2"></circle>
+              </svg>
+              <div class="ml-4">
+                <h4 class="text-sm font-semibold">DHL Fast Delivery</h4>
+                <p class="text-sm">Delivery: Sunday, 27</p>
+                <p class="text-sm font-semibold">$10.99</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </form>
+
+      <div class="">
+        <div class="rounded-lg p-8 bg-[#F4F7FF] border border-gray-200">
+          <h2 class="text-2xl font-semibold mb-6">Resumen</h2>
+          <div class="mb-6">
+            <div
+              class="border text-card-foreground mb-4 p-4 bg-white rounded-lg shadow"
+              data-v0-t="card"
+            >
+              <div class="flex justify-between">
+                <div>
+                  <h4 class="text-sm font-semibold">Trendy Ladies Pants</h4>
+                  <p class="text-sm">$59.99</p>
+                  <p class="text-sm">Quantity: 1</p>
+                </div>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="h-6 w-6 text-gray-600"
+                >
+                  <path
+                    d="M20.38 3.46 16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.47a1 1 0 0 0 .99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.47a2 2 0 0 0-1.34-2.23z"
+                  ></path>
+                </svg>
+              </div>
+            </div>
+            <div
+              class="border text-card-foreground p-4 bg-white rounded-lg shadow"
+              data-v0-t="card"
+            >
+              <div class="flex justify-between">
+                <div>
+                  <h4 class="text-sm font-semibold">Men's Sendo T-shirt</h4>
+                  <p class="text-sm">$89.99</p>
+                  <p class="text-sm">Quantity: 2</p>
+                </div>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="h-6 w-6 text-gray-600"
+                >
+                  <path
+                    d="M20.38 3.46 16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.47a1 1 0 0 0 .99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.47a2 2 0 0 0-1.34-2.23z"
+                  ></path>
+                </svg>
+              </div>
+            </div>
+          </div>
+
+          <div class="mb-6">
+            <div class="flex justify-between mb-2">
+              <p class="text-sm">Subtotal</p>
+              <p class="text-sm">$140.98</p>
+            </div>
+            <div class="flex justify-between mb-2">
+              <p class="text-sm">Shipping Cost</p>
+              <p class="text-sm">$10.99</p>
+            </div>
+            <div class="flex justify-between mb-2">
+              <p class="text-sm">Discount</p>
+              <p class="text-sm">-$5.00</p>
+            </div>
+            <div class="flex justify-between font-semibold">
+              <p>Total Amount</p>
+              <p>$124.99</p>
+            </div>
+          </div>
+
+          <div class="flex flex-col gap-5">
+            <button
+              type="button"
+              class="text-blue-600 mx-auto bg-[#F7BE38] hover:bg-[#F7BE38]/90 focus:ring-4 focus:outline-none focus:ring-[#F7BE38]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center"
+              (click)="bookService()"
+            >
+              @if ( status() === 'loading') {
+                <app-loader class="mr-2" color="black"/>
+              }
+
+              <svg
+                class="w-4 h-4 me-2 -ms-1"
+                aria-hidden="true"
+                focusable="false"
+                data-prefix="fab"
+                data-icon="paypal"
+                role="img"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 384 512"
+              >
+                <path
+                  fill="currentColor"
+                  d="M111.4 295.9c-3.5 19.2-17.4 108.7-21.5 134-.3 1.8-1 2.5-3 2.5H12.3c-7.6 0-13.1-6.6-12.1-13.9L58.8 46.6c1.5-9.6 10.1-16.9 20-16.9 152.3 0 165.1-3.7 204 11.4 60.1 23.3 65.6 79.5 44 140.3-21.5 62.6-72.5 89.5-140.1 90.3-43.4 .7-69.5-7-75.3 24.2zM357.1 152c-1.8-1.3-2.5-1.8-3 1.3-2 11.4-5.1 22.5-8.8 33.6-39.9 113.8-150.5 103.9-204.5 103.9-6.1 0-10.1 3.3-10.9 9.4-22.6 140.4-27.1 169.7-27.1 169.7-1 7.1 3.5 12.9 10.6 12.9h63.5c8.6 0 15.7-6.3 17.4-14.9 .7-5.4-1.1 6.1 14.4-91.3 4.6-22 14.3-19.7 29.3-19.7 71 0 126.4-28.8 142.9-112.3 6.5-34.8 4.6-71.4-23.8-92.6z"
+                ></path>
+              </svg>
+
+              <span class="text-black">
+                Pagar con PayPal
+              </span>
+            </button>
+          </div>
+
+        </div>
+
+        <div
+          class="flex flex-col gap-5 mt-6 rounded-lg p-8 bg-[#F4F7FF] border border-gray-200"
+        >
+          <div class="flex flex-col gap-1">
+            <h3 class="text-lg font-semibold">Codigo de cupón</h3>
+            <p class="text-sm text-muted-foreground text-gray-500 font-medium">
+              Ingrese el codigo de cupon para obtener un descuento instantaneo
+            </p>
+          </div>
+
+          <!-- Divider -->
+          <div class="flex">
+            <div class="flex-1 h-[1px] bg-gray-200"></div>
+          </div>
+
+          <div class="flex">
+            <input
+              class="w-full rounded-lg border border-gray-200 py-2 px-3"
+              placeholder="Codigo de cupon"
+              type="text"
+            />
+
+            <button
+              class="bg-blue-600 text-white rounded-lg px-4 py-2 ml-3 font-medium"
+            >
+              Aplicar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- bg-white shadow -->
