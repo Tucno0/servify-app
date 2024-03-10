@@ -6,6 +6,7 @@ export interface CreateOrderRequest {
   name: string;
   last_name: string;
   address: string;
+  location: string;
   city: string;
   zip_code: string;
   phone: string;

@@ -11,4 +11,11 @@ export class CustomValidators {
         : null;
     };
   }
+
+  static MinDateValidator(minDate: Date): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null => {
+      const controlDate = new Date(control.value);
+      return controlDate < minDate ? { minDate: true } : null;
+    };
+  }
 }

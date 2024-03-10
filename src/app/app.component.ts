@@ -4,6 +4,10 @@ import { initFlowbite } from 'flowbite';
 import { AuthService } from './domains/shared/services/auth.service';
 import { AuthStatus } from '@enums/auth-status.enum';
 import { PlatformLocation } from '@angular/common';
+import { environment } from '@environments/environment';
+
+// Mapbox
+import mapboxgl from 'mapbox-gl'; // or "const mapboxgl = require('mapbox-gl');"
 
 @Component({
   selector: 'app-root',
@@ -29,6 +33,8 @@ export class AppComponent implements OnInit{
   ngOnInit(): void {
     this.authService.checkAuthStatus().subscribe();
     initFlowbite();
+
+    mapboxgl!.accessToken = environment.mapboxKey;
   }
 
 }
