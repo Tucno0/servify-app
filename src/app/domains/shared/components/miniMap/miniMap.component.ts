@@ -19,6 +19,7 @@ import { Map, Marker } from 'mapbox-gl';
 })
 export class MiniMapComponent implements AfterViewInit {
   @Input({ required: true}) lngLat!: [number, number];
+  @Input() isDraggable: boolean = true;
   @Output() location = new EventEmitter<[number, number]>();
   @ViewChild('map') divMap?: ElementRef;
 
@@ -38,7 +39,7 @@ export class MiniMapComponent implements AfterViewInit {
 
     const marker = new Marker({
       color: '#FF5733',
-      draggable: true,
+      draggable: this.isDraggable,
     }).setLngLat(this.lngLat).addTo(this.map);
 
     marker.on('drag', () => {

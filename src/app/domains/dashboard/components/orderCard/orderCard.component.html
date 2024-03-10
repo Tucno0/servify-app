@@ -1,0 +1,82 @@
+<div class="border border-gray-200 rounded-md">
+  <div class="flex items-center py-9 px-8 border-b border-gray-200 bg-[#fafafa]">
+    <div class="mr-10">
+      <span class="block mb-2 text-sm font-bold text-gray-500">CÓDIGO DE ORDEN</span>
+      <span class="text-2xl font-bold">{{ order.id | uppercase }}</span>
+    </div>
+
+    <div>
+      <span class="block mb-2 text-sm font-bold text-gray-500">FECHA</span>
+      <span class="text-2xl font-bold">{{ order.startDate }}</span>
+    </div>
+
+    <!-- boton de ver order -->
+    <div class="ml-auto">
+      <button
+        class="px-6 py-3 bg-blue-600 text-white font-bold rounded-md hover:bg-green-700 transition duration-300"
+      >
+        Ver orden
+      </button>
+    </div>
+  </div>
+
+  <div class="py-8 px-8">
+    <div class="flex gap-5">
+      <div class="w-full sm:w-auto">
+        <img
+          class="w-56 h-full rounded-md shadow hover:shadow-lg transition duration-300 object-cover"
+          [src]="order.service.images[0]"
+          [alt]="order.service.name"
+        />
+      </div>
+
+      <div class="w-full gap-5 sm:w-auto flex-grow">
+        <div class="flex gap-5">
+          <div class="w-3/5 flex flex-col content-between">
+            <div>
+              <h4 class="text-xl font-bold">{{ order.service.name }}</h4>
+              <span class="block mb-2">
+                {{ order.service.description }}
+              </span>
+              <span class="text-xl font-black text-green-600">
+                S/ {{ order.price }}
+              </span>
+            </div>
+
+            <!-- spacer -->
+            <div class="h-8"></div>
+
+            <div class="flex flex-wrap items-center justify-between">
+              <div class="w-full lg:w-auto mb-6 lg:mb-0">
+                <div class="inline-block mr-16">
+                  <span class="block mb-2 text-sm font-bold text-gray-600">
+                    Solicitado el
+                  </span>
+                  <span class="text-sm font-bold">{{ order.createdAt }}</span>
+                </div>
+
+                <div class="inline-block">
+                  <span class="block mb-2 text-sm font-bold text-gray-600">
+                    Estado
+                  </span>
+
+                  <span class="text-sm font-bold text-green-600">{{ order.status }}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Mapa -->
+          <div class="w-2/5 h-auto rounded-lg border border-gray-200">
+            <app-mini-map
+              [lngLat]="location()"
+              [isDraggable]="false"
+            />
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>

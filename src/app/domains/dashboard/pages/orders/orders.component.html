@@ -1,1 +1,24 @@
-<p>orders works!</p>,
+<section class="py-20 bg-white">
+  <div class="container px-4 mx-auto">
+    <div class="max-w-6xl mx-auto">
+      <h3 class="text-3xl font-bold mb-2">Mis ordenes de servicio</h3>
+      <p class="">
+        Aquí puedes ver el estado de tus ordenes de servicios y ver los detalles de cada una.
+      </p>
+
+      <ul class="flex flex-col gap-8 my-12">
+        @for (order of orders(); track order.id) {
+          <li>
+            <app-order-card [order]="order"/>
+          </li>
+        } @empty {
+          <li>
+            <p class="text-center text-2xl text-gray-500">
+              No tienes ordenes de servicio.
+            </p>
+          </li>
+        }
+      </ul>
+    </div>
+  </div>
+</section>
