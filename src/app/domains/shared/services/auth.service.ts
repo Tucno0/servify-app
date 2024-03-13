@@ -52,9 +52,9 @@ export class AuthService {
       )
   }
 
-  register(email: string, name: string, lastName: string, password: string): Observable<boolean> {
+  register(email: string, name: string, lastName: string, password: string, role: string): Observable<boolean> {
     const url = `${this.apiUrl}/api/auth/register`;
-    const body = { email, name, lastName, password };
+    const body = { email, name, lastName, password, role };
 
     return this.http.post<RegisterResponse>(url, body)
       .pipe(

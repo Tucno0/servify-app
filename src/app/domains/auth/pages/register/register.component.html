@@ -4,8 +4,12 @@
       <div class="absolute inset-0">
         <img
           class="object-cover w-full h-full md:min-h-[800px]"
-          src="https://cdn.rareblocks.xyz/collection/celebration/images/signup/4/girl-working-on-laptop.jpg"
-          alt=""
+          [src]="
+            provider
+              ? 'https://images.ctfassets.net/vwt5n1ljn95x/51s0CVltl03F7bOfy31VXB/8a5adaf0c64e789c7f202329724806c0/Home_Apartment_Cleaning.jpg?w=1920&q=75&fm=webp'
+              : 'https://res.cloudinary.com/taskrabbit-com/image/upload/q_auto,f_auto/c_fill/v1565734842/ohiw6raesvu9gkmb5jxt.jpg'
+          "
+          alt="Servify - Encuentra los mejores servicios para ti"
         />
       </div>
 
@@ -14,8 +18,11 @@
       <div class="relative">
         <div class="w-full max-w-xl xl:w-full xl:mx-auto xl:pr-24 xl:max-w-xl">
           <h3 class="text-4xl font-bold text-white">
-            Join 35k+ web professionals & <br class="hidden xl:block" />build
-            your website
+            @if (provider) {
+              Unete a Servify como proveedor de servicios y aumenta tus ingresos
+            } @else {
+              Unete a Servify y encuentra los mejores servicios para ti
+            }
           </h3>
 
           <ul class="grid grid-cols-1 mt-10 sm:grid-cols-2 gap-x-8 gap-y-4">
@@ -37,7 +44,11 @@
               </div>
 
               <span class="text-lg font-medium text-white">
-                Commercial License
+                @if (provider) {
+                  Aumenta tus ingresos
+                } @else {
+                  Encuentra los mejores servicios
+                }
               </span>
             </li>
 
@@ -58,7 +69,11 @@
               </div>
 
               <span class="text-lg font-medium text-white">
-                Unlimited Exports
+                @if (provider) {
+                  Aumenta tu visibilidad
+                } @else {
+                  Encuentra los mejores precios
+                }
               </span>
             </li>
 
@@ -79,7 +94,11 @@
               </div>
 
               <span class="text-lg font-medium text-white">
-                120+ Coded Blocks
+                @if (provider) {
+                  Aumenta tu cartera de clientes
+                } @else {
+                  Encuentra los mejores servicios
+                }
               </span>
             </li>
 
@@ -100,7 +119,11 @@
               </div>
 
               <span class="text-lg font-medium text-white">
-                Design Files Included
+                @if (provider) {
+                  Aumenta tu cartera de servicios
+                } @else {
+                  Encuentra los mejores precios
+                }
               </span>
             </li>
           </ul>
@@ -122,9 +145,21 @@
               Inicia sesión
             </a>
           </p>
+
+          @if (provider) {
+            <div class="flex items-center p-4 my-4 text-sm text-yellow-800 rounded-lg bg-yellow-50 dark:bg-gray-800 dark:text-yellow-300" role="alert">
+              <svg class="flex-shrink-0 inline w-4 h-4 me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+              </svg>
+              <span class="sr-only">Info</span>
+              <div>
+                Te estas registrando como proveedor de servicios
+              </div>
+            </div>
+          }
         </app-header>
 
-        <app-register-form />
+        <app-register-form [provider]="provider"/>
 
         <div class="text-center my-2">
           <p class="text-base text-gray-600">

@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, inject, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoaderComponent } from '@components/loader/loader.component';
@@ -19,6 +19,8 @@ import { CustomValidators } from '@utils/validators';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RegisterFormComponent {
+  @Input() provider: boolean | undefined = false;
+
   // Services
   private readonly authService = inject(AuthService);
   private readonly formBuilder = inject(FormBuilder);
@@ -60,7 +62,9 @@ export class RegisterFormComponent {
     this.status.set('loading');
     const { email, name, lastName, password } = this.form.getRawValue();
 
-    this.authService.register(email, name, lastName, password)
+    const role: string = this.provider ? 'provider' : 'client';
+
+    this.authService.register(email, name, lastName, password, role)
       .subscribe({
         next: () => {
           this.status.set('success');

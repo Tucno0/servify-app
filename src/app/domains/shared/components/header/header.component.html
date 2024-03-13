@@ -61,28 +61,49 @@
     </div>
 
     <div class="hidden lg:flex lg:flex-1 gap-5 lg:justify-end lg:items-center">
-      <a  routerLink="about-us"
-          class="font-semibold py-2 px-3 leading-6 text-gray-900 hover:bg-neutral-100 hover:rounded-full"
-      >
-        Pon tus servicios en Servify
-      </a>
+      @if ( !user() || user()?.role === 'client') {
+        <a  [routerLink]="['/auth/register']"
+            [queryParams]="{ provider: true }"
+            class="font-semibold py-2 px-3 leading-6 text-gray-900 hover:bg-neutral-100 hover:rounded-full"
+        >
+          Pon tus servicios en Servify
+        </a>
+      }
 
       @if ( user() ) {
-        <button
-          type="button"
-          class="flex rounded-full"
-          aria-expanded="false"
-          type="button"
+        <div class="cursor-pointer flex gap-5 rounded-full border border-gray-300 px-3 py-2 items-center hover:shadow-lg"
           (click)="overlayAvatarActive = !overlayAvatarActive"
           cdkOverlayOrigin
           #avatarOverlay="cdkOverlayOrigin"
         >
-          <img
-            class="w-10 h-10 rounded-full"
-            [src]="user()?.image"
-            alt="user photo"
-          />
-        </button>
+          <!-- menu icon -->
+          <span>
+            <i class="fa-solid fa-bars"></i>
+          </span>
+
+          <button
+            type="button"
+            class="flex rounded-full"
+            aria-expanded="false"
+            type="button"
+          >
+            @if (user()?.image && !getImageError()) {
+              <img
+                class="w-8 h-8 rounded-full"
+                [src]="user()?.image"
+                alt="user photo"
+                (load)="handleLoad()"
+                (error)="handleError()"
+              />
+            } @else {
+              <span class="w-8 h-8 rounded-full bg-orange-600 flex items-center justify-center">
+                <!-- nombre inicial del usuario -->
+                <span class="text-white text-xl">{{ user()?.name?.charAt(0) | uppercase}}</span>
+
+              </span>
+            }
+          </button>
+        </div>
 
         <!-- Dropdown menu -->
         <ng-template

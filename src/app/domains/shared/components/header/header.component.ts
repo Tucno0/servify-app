@@ -36,10 +36,19 @@ export class HeaderComponent {
 
   // signals
   public user = computed(() => this.authService.currentUser());
+  public getImageError = signal(false);
 
   // Methods
   handleCloseOverlay(event: boolean) {
     this.overlayAvatarActive = event;
   }
 
+  handleLoad() {
+    // console.log('La imagen se cargó correctamente.');
+  }
+
+  handleError() {
+    // console.log('Ocurrió un error al cargar la imagen.');
+    this.getImageError.set(true);
+  }
 }
