@@ -1,55 +1,44 @@
-<div class="flex flex-col gap-10 px-4 py-16 mx-auto rounded-xl sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20 bg-gray-50">
+<div
+  class="flex flex-col gap-10 px-4 py-16 mx-auto rounded-xl sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20 bg-gray-50"
+>
   <div class="max-w-xl md:mx-auto sm:text-center lg:max-w-2xl">
-    <h2 class="max-w-lg mb-6 font-sans text-3xl font-bold leading-none tracking-tight text-gray-900 sm:text-4xl md:mx-auto">
-      <span class="relative inline-block">
-        <svg viewBox="0 0 52 24" fill="currentColor" class="absolute top-0 left-0 z-0 hidden w-32 -mt-8 -ml-20 text-blue-gray-100 lg:w-32 lg:-ml-28 lg:-mt-10 sm:block">
-          <defs>
-            <pattern id="3071a3ad-db4a-4cbe-ac9a-47850b69e4b7" x="0" y="0" width=".135" height=".30">
-              <circle cx="1" cy="1" r=".7"></circle>
-            </pattern>
-          </defs>
-          <rect fill="url(#3071a3ad-db4a-4cbe-ac9a-47850b69e4b7)" width="52" height="24"></rect>
-        </svg>
-      </span>
+    <h2
+      class="max-w-lg font-sans text-3xl font-bold leading-none tracking-tight text-gray-900 sm:text-4xl md:mx-auto"
+    >
       {{ service()?.name }}
     </h2>
-
-    <p class="text-base text-gray-700 md:text-lg">
-      {{ service()?.description }}
-    </p>
   </div>
-
-  <!-- bOton de reserva -->
-  <div class="flex flex-col items-center justify-center">
-    <app-button
-      [outline]="true"
-      gradientDuoTone="purpleToBlue"
-      (click)="openModal()"
-    >
-      Reservar
-    </app-button>
-  </div>
-
 
   <div class="grid max-w-screen-lg gap-8 lg:grid-cols-2 sm:mx-auto">
     <div class="flex flex-col justify-center">
-
       <div class="flex">
         <div class="mr-4">
-          <div class="flex items-center justify-center w-10 h-10 mb-3 rounded-full bg-indigo-50">
-            <svg class="w-8 h-8 text-deep-purple-accent-400" stroke="currentColor" viewBox="0 0 52 52">
-              <polygon stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none" points="29 13 14 29 25 29 23 39 38 23 27 23"></polygon>
+          <div
+            class="flex items-center justify-center w-10 h-10 mb-3 rounded-full bg-indigo-50"
+          >
+            <svg
+              class="w-8 h-8 text-deep-purple-accent-400"
+              stroke="currentColor"
+              viewBox="0 0 52 52"
+            >
+              <polygon
+                stroke-width="3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                fill="none"
+                points="29 13 14 29 25 29 23 39 38 23 27 23"
+              ></polygon>
             </svg>
           </div>
         </div>
 
         <div>
           <h6 class="mb-2 font-semibold leading-5">
-            They urge you to put down
+            Descripción del servicio
           </h6>
 
           <p class="text-base text-gray-900">
-            {{ service()?.content }}
+            {{ service()?.description }}
           </p>
           <hr class="w-full my-6 border-gray-300" />
         </div>
@@ -57,35 +46,59 @@
 
       <div class="flex">
         <div class="mr-4">
-          <div class="flex items-center justify-center w-10 h-10 mb-3 rounded-full bg-indigo-50">
-            <svg class="w-8 h-8 text-deep-purple-accent-400" stroke="currentColor" viewBox="0 0 52 52">
-              <polygon stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none" points="29 13 14 29 25 29 23 39 38 23 27 23"></polygon>
+          <div
+            class="flex items-center justify-center w-10 h-10 mb-3 rounded-full bg-indigo-50"
+          >
+            <svg
+              class="w-8 h-8 text-deep-purple-accent-400"
+              stroke="currentColor"
+              viewBox="0 0 52 52"
+            >
+              <polygon
+                stroke-width="3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                fill="none"
+                points="29 13 14 29 25 29 23 39 38 23 27 23"
+              ></polygon>
             </svg>
           </div>
         </div>
         <div>
-          <h6 class="mb-2 font-semibold leading-5">The powerless in a world</h6>
+          <h6 class="mb-2 font-semibold leading-5">Mas informacion</h6>
           <p class="text-base text-gray-900">
             {{ service()?.content }}
           </p>
+
           <hr class="w-full my-6 border-gray-300" />
+
+          <!-- Precio -->
+          <div class="">
+            <div class="flex items-center justify-center gap-10">
+              <div class="text-center">
+                <h6 class="mb-2 font-bold text-green-500 leading-5">Precio por hora</h6>
+                <p class="text-2xl font-medium text-black">
+                  S/ {{ service()?.priceByHour }}
+                </p>
+              </div>
+
+              <!-- bOton de reserva -->
+              <div class="i">
+                <app-button
+                  [outline]="true"
+                  gradientDuoTone="purpleToBlue"
+                  (click)="openModal()"
+                >
+                  Reservar
+                </app-button>
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
 
-      <div class="flex">
-        <div class="mr-4">
-          <div class="flex items-center justify-center w-10 h-10 mb-3 rounded-full bg-indigo-50">
-            <svg class="w-8 h-8 text-deep-purple-accent-400" stroke="currentColor" viewBox="0 0 52 52">
-              <polygon stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none" points="29 13 14 29 25 29 23 39 38 23 27 23"></polygon>
-            </svg>
-          </div>
-        </div>
-        <div>
-          <h6 class="mb-2 font-semibold leading-5">Tell them I hate them</h6>
-          <p class="text-base text-gray-900">
-            {{ service()?.content }}
-        </div>
-      </div>
+
     </div>
 
     <div class="grid grid-cols-2 gap-5">
@@ -109,72 +122,137 @@
 </div>
 
 <section class="bg-white dark:bg-gray-900">
-  <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6 ">
-      <div class="mx-auto max-w-screen-sm text-center mb-8 lg:mb-16">
-          <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">Personas que pueden realizar esta servicio</h2>
-          <p class="font-light text-gray-500 lg:mb-16 sm:text-xl dark:text-gray-400">Explore the whole collection of open-source web components and elements built with the utility classes from Tailwind</p>
-      </div>
+  <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
+    <div class="mx-auto max-w-screen-sm text-center mb-8 lg:mb-16">
+      <h2
+        class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white"
+      >
+        Personas que pueden realizar esta servicio
+      </h2>
+    </div>
 
-      <div class="grid gap-8 mb-6 lg:mb-16 md:grid-cols-2">
-        @for (provider of providers(); track provider.id) {
-          <app-provider-card [provider]="provider"/>
-        } @empty {
-          <div class="flex items-center justify-center w-full h-96">
-            <p class="text-gray-500">Aún no hay proveedores para este servicio</p>
-          </div>
-        }
+    <div class="grid gap-8 mb-6 lg:mb-16 md:grid-cols-2">
+      @for (provider of providers(); track provider.id) {
+      <app-provider-card [provider]="provider" />
+      } @empty {
+      <div class="flex items-center justify-center w-full h-96">
+        <p class="text-gray-500">Aún no hay proveedores para este servicio</p>
       </div>
+      }
+    </div>
   </div>
 </section>
 
 <section class="py-10 bg-gray-100 sm:py-16 lg:py-24">
   <div class="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
-      <div class="max-w-2xl mx-auto text-center">
-          <h2 class="text-3xl font-bold leading-tight text-black sm:text-4xl lg:text-5xl">¿Cómo funciona?</h2>
-          <p class="max-w-lg mx-auto mt-4 text-base leading-relaxed text-gray-600">Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis.</p>
-      </div>
+    <div class="max-w-2xl mx-auto text-center">
+      <h2
+        class="text-3xl font-bold leading-tight text-black sm:text-4xl lg:text-5xl"
+      >
+        ¿Cómo funciona?
+      </h2>
+      <p class="max-w-lg mx-auto mt-4 text-base leading-relaxed text-gray-600">
+        Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet
+        sint. Velit officia consequat duis.
+      </p>
+    </div>
 
-      <ul class="max-w-md mx-auto mt-16 space-y-12">
-          <li class="relative flex items-start">
-              <div class="-ml-0.5 absolute mt-0.5 top-14 left-8 w-px border-l-4 border-dotted border-gray-300 h-full" aria-hidden="true"></div>
+    <ul class="max-w-md mx-auto mt-16 space-y-12">
+      <li class="relative flex items-start">
+        <div
+          class="-ml-0.5 absolute mt-0.5 top-14 left-8 w-px border-l-4 border-dotted border-gray-300 h-full"
+          aria-hidden="true"
+        ></div>
 
-              <div class="relative flex items-center justify-center flex-shrink-0 w-16 h-16 bg-white rounded-full shadow">
-                  <svg class="w-10 h-10 text-fuchsia-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                  </svg>
-              </div>
-              <div class="ml-6">
-                  <h3 class="text-lg font-semibold text-black">Describa su tarea</h3>
-                  <p class="mt-4 text-base text-gray-600">Díganos qué necesita hacer, cuándo y dónde funciona para usted.</p>
-              </div>
-          </li>
+        <div
+          class="relative flex items-center justify-center flex-shrink-0 w-16 h-16 bg-white rounded-full shadow"
+        >
+          <svg
+            class="w-10 h-10 text-fuchsia-600"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="1"
+              d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+            />
+          </svg>
+        </div>
+        <div class="ml-6">
+          <h3 class="text-lg font-semibold text-black">Describa su tarea</h3>
+          <p class="mt-4 text-base text-gray-600">
+            Díganos qué necesita hacer, cuándo y dónde funciona para usted.
+          </p>
+        </div>
+      </li>
 
-          <li class="relative flex items-start">
-              <div class="-ml-0.5 absolute mt-0.5 top-14 left-8 w-px border-l-4 border-dotted border-gray-300 h-full" aria-hidden="true"></div>
+      <li class="relative flex items-start">
+        <div
+          class="-ml-0.5 absolute mt-0.5 top-14 left-8 w-px border-l-4 border-dotted border-gray-300 h-full"
+          aria-hidden="true"
+        ></div>
 
-              <div class="relative flex items-center justify-center flex-shrink-0 w-16 h-16 bg-white rounded-full shadow">
-                  <svg class="w-10 h-10 text-fuchsia-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122" />
-                  </svg>
-              </div>
-              <div class="ml-6">
-                  <h3 class="text-lg font-semibold text-black">Elige a un trabajador</h3>
-                  <p class="mt-4 text-base text-gray-600">Busca trabajadores de confianza por habilidades, reseñas y precio. Chatea con ellos para confirmar los detalles</p>
-              </div>
-          </li>
+        <div
+          class="relative flex items-center justify-center flex-shrink-0 w-16 h-16 bg-white rounded-full shadow"
+        >
+          <svg
+            class="w-10 h-10 text-fuchsia-600"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="1"
+              d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122"
+            />
+          </svg>
+        </div>
+        <div class="ml-6">
+          <h3 class="text-lg font-semibold text-black">
+            Elige a un trabajador
+          </h3>
+          <p class="mt-4 text-base text-gray-600">
+            Busca trabajadores de confianza por habilidades, reseñas y precio.
+            Chatea con ellos para confirmar los detalles
+          </p>
+        </div>
+      </li>
 
-          <li class="relative flex items-start">
-              <div class="relative flex items-center justify-center flex-shrink-0 w-16 h-16 bg-white rounded-full shadow">
-                  <svg class="w-10 h-10 text-fuchsia-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M13 10V3L4 14h7v7l9-11h-7z" />
-                  </svg>
-              </div>
-              <div class="ml-6">
-                  <h3 class="text-lg font-semibold text-black">¡Hazlo!</h3>
-                  <p class="mt-4 text-base text-gray-600">El trabajador llega y hace el trabajo. Paga de forma segura y deja una reseña, todo a través de Servify.</p>
-              </div>
-          </li>
-      </ul>
+      <li class="relative flex items-start">
+        <div
+          class="relative flex items-center justify-center flex-shrink-0 w-16 h-16 bg-white rounded-full shadow"
+        >
+          <svg
+            class="w-10 h-10 text-fuchsia-600"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="1"
+              d="M13 10V3L4 14h7v7l9-11h-7z"
+            />
+          </svg>
+        </div>
+        <div class="ml-6">
+          <h3 class="text-lg font-semibold text-black">¡Hazlo!</h3>
+          <p class="mt-4 text-base text-gray-600">
+            El trabajador llega y hace el trabajo. Paga de forma segura y deja
+            una reseña, todo a través de Servify.
+          </p>
+        </div>
+      </li>
+    </ul>
   </div>
 
   <div class="flex flex-col items-center justify-center mt-10">

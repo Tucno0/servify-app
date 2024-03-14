@@ -33,10 +33,7 @@ export default class OrdersComponent implements OnInit {
   getOrders(): void {
     this.clientsService.getClientByUserId(this.user()!.id)
       .pipe(
-
-        tap(client => console.log(client)),
         switchMap( (client: Client) => this.ordersService.getOrdersByClientId(client.id)),
-        tap(orders => console.log(orders))
       )
       .subscribe({
         next: (orders: Order[]) => this.orders.set(orders),
