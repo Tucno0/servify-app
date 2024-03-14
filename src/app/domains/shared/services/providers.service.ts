@@ -34,4 +34,9 @@ export class ProvidersService {
     return this.http.get<Provider[]>(url);
   }
 
+  getProviderByUserId(userId: string): Observable<Provider> {
+    const url = `${this.apiUrl}/api/providers/user/${userId}`;
+    return this.http.get<Provider>(url);
+  }
+
 }

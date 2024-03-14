@@ -24,4 +24,9 @@ export class ServicesService {
     return this.http.get<Service>(url);
   }
 
+  getServicesByProviderId(providerId: string): Observable<Service[]> {
+    const url = `${this.apiUrl}/api/services/provider/${providerId}`;
+    return this.http.get<Service[]>(url);
+  }
+
 }

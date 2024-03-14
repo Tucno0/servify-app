@@ -65,7 +65,14 @@ export class LoginFormComponent {
       .subscribe({
         next: () => {
           this.status.set('success');
-          this.router.navigate(['/dashboard']);
+
+          if (this.authService.currentUser()!.role === 'provider') {
+            this.router.navigate(['/dashboard/provider-mode']);
+            return;
+          } else {
+            this.router.navigate(['/services']);
+          }
+
         },
         error: (error) => {
           this.status.set('failed');

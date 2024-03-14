@@ -3,7 +3,7 @@
     aria-label="Global"
   >
     <div class="flex lg:flex-1">
-      <a [routerLink]="[ user() ? '/dashboard': '/' ]" class="">
+      <a [routerLink]="[ user()?.role === 'client' ? '/services': '/dashboard/provider-mode']">
         <span class="sr-only">Your Company</span>
         <img
           class="h-8 w-auto"

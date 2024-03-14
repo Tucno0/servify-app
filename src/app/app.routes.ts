@@ -128,9 +128,9 @@ export const routes: Routes = [
     loadComponent: () => import('./domains/dashboard/layouts/dashboardLayout/dashboardLayout.component'),
     children: [
       {
-        path: '',
-        loadComponent: () => import('./domains/dashboard/pages/services/services.component'),
-        title: `${titleApp} | Servicios`,
+        path: 'provider-mode',
+        loadComponent: () => import('./domains/dashboard/pages/providerMode/providerMode.component'),
+        title: `${titleApp} | Modo proveedor`,
       },
       {
         path: 'book',
@@ -147,7 +147,12 @@ export const routes: Routes = [
         path: 'orders',
         loadComponent: () => import('./domains/dashboard/pages/orders/orders.component'),
         title: `${titleApp} | Mis órdenes`,
-      }
+      },
+      {
+        path: '',
+        redirectTo: 'provider-mode',
+        pathMatch: 'full',
+      },
     ]
   },
   {
