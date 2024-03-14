@@ -47,7 +47,14 @@
         > Inicio </a>
       }
 
-      <a [routerLink]="[ user() ? '/dashboard': 'services' ]"
+      @if (user()?.role === 'provider') {
+        <a routerLink="/dashboard/provider-mode"
+        routerLinkActive="text-purple-600"
+        class="text-base font-semibold leading-6 text-gray-900 hover:text-purple-600"
+        > Hoy</a>
+      }
+
+      <a routerLink="/services"
         routerLinkActive="text-purple-600"
         class="text-base font-semibold leading-6 text-gray-900 hover:text-purple-600"
       > Servicios </a>
@@ -61,12 +68,19 @@
     </div>
 
     <div class="hidden lg:flex lg:flex-1 gap-5 lg:justify-end lg:items-center">
-      @if ( !user() || user()?.role === 'client') {
+      @if ( !user() ) {
         <a  [routerLink]="['/auth/register']"
             [queryParams]="{ provider: true }"
             class="font-semibold py-2 px-3 leading-6 text-gray-900 hover:bg-neutral-100 hover:rounded-full"
         >
           Pon tus servicios en Servify
+        </a>
+
+      } @else if (user()?.role === 'client') {
+        <a [routerLink]="['/dashboard/orders']"
+          class="font-semibold py-2 px-3 leading-6 text-gray-900 hover:bg-neutral-100 hover:rounded-full"
+        >
+          Mis solicitudes de servicios
         </a>
       }
 

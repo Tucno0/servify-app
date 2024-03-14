@@ -1,8 +1,10 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, computed, inject, signal } from '@angular/core';
 import { DIALOG_DATA, DialogRef } from '@angular/cdk/dialog';
 import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
 import { Service } from '@models/service.model';
+import { CategoriesService } from '@services/index';
+import { Category } from '@models/category.model';
 
 @Component({
   selector: 'app-edit-service-modal',
@@ -14,13 +16,17 @@ import { Service } from '@models/service.model';
   templateUrl: './editServiceModal.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class EditServiceModalComponent {
+export class EditServiceModalComponent implements OnInit {
 
   // services
   private formBuilder = inject(FormBuilder);
   private dialogRef = inject(DialogRef<Service>);
   // Data del todo seleccionado que se envía desde el componente padre
   private readonly data: Service = inject(DIALOG_DATA);
+  private readonly CategoriesService = inject(CategoriesService);
+
+  // signals
+  public categories = signal<Category[]>([]);
 
   // properties
   public service = computed(() => this.data);
@@ -41,12 +47,31 @@ export class EditServiceModalComponent {
       this.service() ? this.service().priceByHour : '',
       Validators.required
     ],
+    categoryId: [
+      this.service() ? this.service().category.id : '',
+    ],
   });
 
+  // Lifecycle
+  ngOnInit() {
+    this.getCategories();
+  }
 
   // Methods
   close() {
     this.dialogRef.close();
+  }
+
+  getCategories() {
+    return this.CategoriesService.getCategories()
+      .subscribe({
+        next: (categories) => {
+          this.categories.set(categories);
+        },
+        error: (err) => {
+          console.log(err);
+        }
+      });
   }
 
   updateService() {
@@ -54,6 +79,7 @@ export class EditServiceModalComponent {
       return;
     }
 
+    console.log(this.form.value);
     // this.dialogRef.close(this.form.value);
   }
 }
